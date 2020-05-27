@@ -1,0 +1,7 @@
+{
+  "name": "require-images-generator",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Adam Siekierski <adam.siekiera@outlook.com>",
+  "license": "MIT"
+}
