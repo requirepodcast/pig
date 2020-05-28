@@ -1,7 +1,15 @@
 {
   "name": "require-images-generator",
   "version": "1.0.0",
+  "scripts": {
+    "ig": "node instagram.js",
+    "fb": "node facebook.js",
+    "start": "node index.js"
+  },
   "main": "index.js",
   "author": "Adam Siekierski <adam.siekiera@outlook.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "canvas": "^2.6.1"
+  }
 }
