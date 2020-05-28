@@ -3,7 +3,7 @@ const fs = require('fs');
 
 const EPISODE_TITLE = 'dupa pieprzyć wiedźma dupa canvas require';
 
-registerFont('FiraCode.ttf', { family: 'FiraCode' });
+registerFont('assets/FiraCode.ttf', { family: 'FiraCode' });
 
 function wrapText(text, maxLen) {
   const lines = [''];
@@ -28,14 +28,14 @@ function wrapText(text, maxLen) {
   const ctx = canvas.getContext('2d');
 
   // Background
-  const bg = await loadImage('Background.png');
+  const bg = await loadImage('assets/Background.png');
   const bgScale = Math.max(1000 / bg.width, 1000 / bg.height);
   const bgX = 1000 / 2 - (bg.width / 2) * bgScale;
   const bgY = 1000 / 2 - (bg.height / 2) * bgScale;
   ctx.drawImage(bg, bgX, bgY, bg.width * bgScale, bg.height * bgScale);
 
   // Logo
-  const logo = await loadImage('RequireLogo.png');
+  const logo = await loadImage('assets/RequireLogo.png');
   ctx.drawImage(logo, 100, 100, 350, 350);
 
   // "New episode" title
@@ -61,11 +61,11 @@ function wrapText(text, maxLen) {
   ctx.fillText('Dostępny na dowolnej platformie streamingowej', 25, 900);
 
   // PLatforms icons
-  const spotify = await loadImage('SpotifyLogo.png');
-  const apple = await loadImage('ApplePodcastsLogo.png');
-  const google = await loadImage('GooglePodcastsLogo.png');
-  const anchor = await loadImage('AnchorLogo.png');
-  const youtube = await loadImage('YouTubeLogo.png');
+  const spotify = await loadImage('assets/SpotifyLogo.png');
+  const apple = await loadImage('assets/ApplePodcastsLogo.png');
+  const google = await loadImage('assets/GooglePodcastsLogo.png');
+  const anchor = await loadImage('assets/AnchorLogo.png');
+  const youtube = await loadImage('assets/YouTubeLogo.png');
 
   ctx.drawImage(spotify, 25, 925, 50, 50);
   ctx.drawImage(apple, 100, 925, 50, 50);
@@ -74,7 +74,7 @@ function wrapText(text, maxLen) {
   ctx.drawImage(youtube, 325, 925, 50, 50);
 
   const stream = canvas.createPNGStream();
-  const out = fs.createWriteStream('./instagram.png');
+  const out = fs.createWriteStream('./output/instagram.png');
 
   stream.pipe(out);
 })();
