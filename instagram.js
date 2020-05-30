@@ -1,27 +1,10 @@
 const { createCanvas, loadImage, registerFont } = require('canvas');
 const fs = require('fs');
+const wrapText = require('./utils/wrapText');
 
-const EPISODE_TITLE = 'dupa pieprzyć wiedźma dupa canvas require';
+const EPISODE_TITLE = process.argv[2];
 
 registerFont('assets/FiraCode.ttf', { family: 'FiraCode' });
-
-function wrapText(text, maxLen) {
-  const lines = [''];
-  const words = text.split(' ');
-  let currentLineLength = 0;
-
-  for (let word of words) {
-    currentLineLength += word.length + 1;
-    if (currentLineLength > maxLen) {
-      lines.unshift(word);
-      currentLineLength = word.length + 1;
-    } else {
-      lines[0] += ' ' + word;
-    }
-  }
-
-  return lines.reverse();
-}
 
 (async function () {
   const canvas = createCanvas(1000, 1000);
@@ -29,9 +12,9 @@ function wrapText(text, maxLen) {
 
   // Background
   const bg = await loadImage('assets/Background.png');
-  const bgScale = Math.max(1000 / bg.width, 1000 / bg.height);
-  const bgX = 1000 / 2 - (bg.width / 2) * bgScale;
-  const bgY = 1000 / 2 - (bg.height / 2) * bgScale;
+  const bgScale = Math.max(canvas.width / bg.width, canvas.height / bg.height);
+  const bgX = canvas.width / 2 - (bg.width / 2) * bgScale;
+  const bgY = canvas.height / 2 - (bg.height / 2) * bgScale;
   ctx.drawImage(bg, bgX, bgY, bg.width * bgScale, bg.height * bgScale);
 
   // Logo
