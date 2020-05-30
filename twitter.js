@@ -22,23 +22,28 @@ registerFont('assets/FiraCode.ttf', { family: 'FiraCode' });
   const logo = await loadImage('assets/RequireLogo.png');
   ctx.drawImage(logo, 50, 100, 475, 475);
 
-  // Title
+  // Title and description
+  const titleLines = wrapText(EPISODE_TITLE, 20);
+  const titleHeight = titleLines.length * 60;
+
+  const descriptionLines = wrapText(EPISODE_DESCRIPTION, 39);
+  const descriptionHeight = descriptionLines.length * 30;
+
+  const textHeight = titleHeight + descriptionHeight + 50;
+  const textBase = canvas.height / 2 - textHeight / 2;
+
   ctx.font = '50px FiraCode';
   ctx.textBaseline = 'top';
   ctx.fillStyle = '#ff5370';
   ctx.textAlign = 'left';
-  const titleLines = wrapText(EPISODE_TITLE, 20);
   titleLines.map((line, i) => {
-    ctx.fillText(line, 575, 100 + i * 60);
+    ctx.fillText(line, 575, textBase + i * 60);
   });
 
-  // Description
   ctx.font = '25px FiraCode';
   ctx.fillStyle = 'white';
-  const titleLinesHeight = titleLines.length * 60;
-  const descriptionLines = wrapText(EPISODE_DESCRIPTION, 39);
   descriptionLines.map((line, i) => {
-    ctx.fillText(line, 575, 150 + titleLinesHeight + 30 * i);
+    ctx.fillText(line, 575, textBase + titleHeight + 50 + i * 30);
   });
 
   // Save to file
